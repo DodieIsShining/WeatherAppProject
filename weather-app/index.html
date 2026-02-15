@@ -6,11 +6,11 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="default-src 'self'; script-src 'self'; connect-src 'self' https://api.openweathermap.org"
     />
     <meta
       http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="default-src 'self'; script-src 'self'; connect-src 'self' https://api.openweathermap.org"
     />
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css" />
@@ -26,7 +26,7 @@
                 </button>
             </header>
 
-            <section class="weather-info" style="display: none;">
+            <section class="weather-info">
                 <div class="location-date-container">
                     <div class="location">
                         <span class="loc">
@@ -103,7 +103,7 @@
             </section>
 
             <section class="search-city section-message">
-                <img src="assets/search-city.png" class="message-img">
+                <img src="assets/world.png">
                 <div>
                     <h1>Search for a city</h1>
                     <h4 class="regular-txt">
@@ -112,7 +112,17 @@
                 </div>
             </section>
 
+            <section class="not-found section-message">
+                <img src="assets/notfound.gif">
+                <div>
+                    <h1>City not found</h1>
+                    <h4 class="regular-txt">
+                        Please check the spelling or try another city
+                    </h4>
+                </div>
+            </section>
         </main>
 
+    <script src="script.js"></script>
   </body>
 </html>
