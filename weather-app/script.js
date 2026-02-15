@@ -15,6 +15,7 @@ const currentDateTxt = document.querySelector('.current-date-txt');
 
 const forecastItemsContainer = document.querySelector('.forecast-items-container');
 
+// This will leak but it's a free key so it's fine
 const apiKey = '3f9b65ece487708218f4df43804c5378';
 
 // Initialize search city as active
@@ -22,6 +23,7 @@ searchCity.classList.add('active');
 
 getBackgroundImage()
 
+// Manage search bar and its visuals
 searchButton.addEventListener('click', () => {
     const city = cityInput.value;
     if(city.trim() != ''){
@@ -31,6 +33,7 @@ searchButton.addEventListener('click', () => {
     }
 })
 
+// Add enter key searching
 cityInput.addEventListener('keydown', (event) => {
     if(event.key == 'Enter'){
         const city = cityInput.value;
@@ -42,6 +45,7 @@ cityInput.addEventListener('keydown', (event) => {
     }
 })
 
+// Change the bg depending on the time
 function getBackgroundImage(){
     const now = new Date()
     const hours = now.getHours()
@@ -53,6 +57,7 @@ function getBackgroundImage(){
     }
 }
 
+// Change the bee gif depending on the weather
 function getWeatherIcon(id){
     if(id <= 232) return 'thunder.gif'
     if(id <= 531) return 'rainy.gif'
@@ -67,6 +72,7 @@ function getCurrentDate(){
     return date.toLocaleDateString('en-FR', options)
 }
 
+// Handle the api part of the project
 async function getFetchData(endPoint, city){
     const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?q=${city}&appid=${apiKey}&units=metric`
     const response = await fetch(apiUrl)
@@ -74,6 +80,7 @@ async function getFetchData(endPoint, city){
     return json
 }
 
+// Outputs the correct weather data on the app
 async function updateWeatherInfo(city){
     try {
         const weatherData = await getFetchData('weather', city)
@@ -107,6 +114,7 @@ async function updateWeatherInfo(city){
     }
 }
 
+// Outputs the correct forecast data on the app
 async function updateForecastsInfo(city){
     const forecastsData = await getFetchData('forecast', city)
     const timeTaken = '12:00:00'
